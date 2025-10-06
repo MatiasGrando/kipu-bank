@@ -42,7 +42,7 @@ Permite al usuario retirar Ether de su saldo bajo las siguientes condiciones:
 - Tener suficiente saldo disponible.
 
 ### `getBalance()`
-Devuelve el saldo del llamador.
+Devuelve el saldo del usuario.
 
 ### `getContractBalance()`
 Devuelve el balance total en Ether del contrato.
