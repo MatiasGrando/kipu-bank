@@ -57,19 +57,9 @@ El contrato implementa errores personalizados para mejorar la legibilidad y gas 
 - `WithdraftFail`: Si la operación de retiro falla.
 - `WithoutSufficientBalance`: Si el usuario intenta retirar más de lo disponible.
 
-constructor(uint256 _maxWithdraftPerTransaction, uint256 _maxCapBank) {
-    MAX_WITHDRAFT_PER_TRANSACTION = _maxWithdraftPerTransaction;
-    MAX_CAP_BANK = _maxCapBank;
-}
-const maxWithdraft = ethers.utils.parseEther("1"); // 1 ETH
-const capBank = ethers.utils.parseEther("100");   // 100 ETH
+---
 
-const kipuBank = await ethers.deployContract("KipuBank", [
-  maxWithdraft,
-  capBank
-]);
-
-Constructor
+## 🛠 Constructor
 constructor(uint256 _maxWithdraftPerTransaction, uint256 _maxCapBank)
 
 
@@ -79,14 +69,16 @@ Límite de retiro por transacción (_maxWithdraftPerTransaction)
 
 Límite de fondos del banco (_maxCapBank)
 
+---
+## 🛡️ Seguridad
 
-// Depositar Ether
-kipuBank.deposit{value: 1 ether}();
 
-// Retirar Ether
-kipuBank.withdraf(0.5 ether);
+- Evita depósitos que excedan el límite total del banco.
 
-// Consultar balance
-uint balance = kipuBank.getBalance();
+- Impide retiros por encima del límite por transacción.
+
+- Solo el propietario del saldo puede retirar sus fondos.
+
+- Validación estricta de errores con revert.
 
 
